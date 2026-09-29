@@ -31,7 +31,18 @@ def consecutive_ints(ints):
 
 
 def median_vs_mean(nums):
-    ...
+
+    #sort the list first
+    sorted_nums = sorted(nums)
+    mean = sum(nums) / len(nums)
+    mid = len(nums) // 2
+
+    if len(nums) % 2 == 0:
+        median = (sorted_nums[mid - 1] + sorted_nums[mid]) / 2
+    else:
+        median = sorted_nums[mid]
+    return median <= mean
+
 
 
 # ---------------------------------------------------------------------
@@ -40,7 +51,10 @@ def median_vs_mean(nums):
 
 
 def n_prefixes(s, n):
-    ...
+    new_name = ""
+    for k in range(n,0,-1):
+        new_name += (s[:k])
+    return new_name
 
 
 # ---------------------------------------------------------------------
@@ -49,7 +63,13 @@ def n_prefixes(s, n):
 
 
 def exploded_numbers(ints, n):
-    ...
+    new_list = []
+    width = len(str(max(ints) + n))
+    for j in ints:
+        explode = range(j - n, j + n + 1)
+        format = [str(value).zfill(width) for value in explode]
+        new_list.append("".join(format))
+    return new_list
 
 
 # ---------------------------------------------------------------------
@@ -58,7 +78,13 @@ def exploded_numbers(ints, n):
 
 
 def last_chars(fh):
-    ...
+    text = ""
+    for line in fh:
+        if line.endswith("\n"):
+            line = line[:-1]
+        text += line[-1]
+    return text
+
 
 
 # ---------------------------------------------------------------------
@@ -67,10 +93,13 @@ def last_chars(fh):
 
 
 def add_root(A):
-    ...
+    positions = np.arange(len(A)) 
+    return A + np.sqrt(positions)
+
 
 def where_square(A):
-    ...
+    sqrt_list = np.sqrt(A)
+    return (A >= 0) & np.isclose(sqrt_list, np.floor(sqrt_list))
 
 
 # ---------------------------------------------------------------------
